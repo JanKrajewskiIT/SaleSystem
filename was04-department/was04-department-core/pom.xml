@@ -12,42 +12,21 @@
 	<name>WAS04 Department Core</name>
 
 	<properties>
+		<targetName.invoicing>was04-department-invoicing</targetName.invoicing>
+		<targetName.warehouse>was04-department-warehouse</targetName.warehouse>
 		<org.slf4j-version>1.7.5</org.slf4j-version>
+		<logback.version>1.0.13</logback.version>
 		<jackson.version>2.3.2</jackson.version>
 		<hibernate.version>4.2.4.Final</hibernate.version>
 		<postgresql.connector.version>9.1-901.jdbc4</postgresql.connector.version>
-		<logback.version>1.0.13</logback.version>
 	</properties>
-
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.4</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.1</version>
-			</plugin>
-			<plugin>
-				<groupId>org.liquibase</groupId>
-				<artifactId>liquibase-maven-plugin</artifactId>
-				<version>3.0.7</version>
-				<configuration>
-					<changeLogFile>src/main/resources/database/db-changelog.xml</changeLogFile>
-					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 
 	<dependencies>
 		<dependency>
 			<groupId>pl.lodz.p.was04</groupId>
 			<artifactId>was04-department-commons</artifactId>
 		</dependency>
-	
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -56,6 +35,10 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -114,13 +97,11 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.easytesting</groupId>
 			<artifactId>fest-assert</artifactId>
-			<version>1.4</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -128,17 +109,14 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>16.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
-			<version>2.3</version>
 		</dependency>
 
 		<dependency>
@@ -151,34 +129,51 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-
-		<!-- liquibase -->
-		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-maven-plugin</artifactId>
-			<version>3.0.7</version>
-			<type>maven-plugin</type>
-		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>3.0.7</version>
+				<configuration>
+					<changeLogFile>src/main/resources/database/db-changelog.xml</changeLogFile>
+					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 	<profiles>
 		<profile>
 			<id>invoicing</id>
 			<build>
-				<finalName>was04-department-invocing-${project.version}</finalName>
+				<finalName>${targetName.invoicing}-${project.version}</finalName>
 				<plugins>
 					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-war-plugin</artifactId>
 						<configuration>
-							<warName>was04-department-invocing</warName>
+							<warName>${targetName.invoicing}</warName>
 						</configuration>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.tomcat.maven</groupId>
 						<artifactId>tomcat7-maven-plugin</artifactId>
 						<configuration>
-							<warFile>${project.build.directory}/was04-department-invocing.war</warFile>
-							<path>/was04-department-invocing</path>
+							<warFile>${project.build.directory}/${targetName.invoicing}.war</warFile>
+							<path>/${targetName.invoicing}</path>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -193,20 +188,21 @@
 		<profile>
 			<id>warehouse</id>
 			<build>
-				<finalName>was04-department-warehouse-${project.version}</finalName>
+				<finalName>${targetName.warehouse}-${project.version}</finalName>
 				<plugins>
 					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-war-plugin</artifactId>
 						<configuration>
-							<warName>was04-department-warehouse</warName>
+							<warName>${targetName.warehouse}</warName>
 						</configuration>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.tomcat.maven</groupId>
 						<artifactId>tomcat7-maven-plugin</artifactId>
 						<configuration>
-							<warFile>${project.build.directory}/was04-department-warehouse.war</warFile>
-							<path>/was04-department-warehouse</path>
+							<warFile>${project.build.directory}/${targetName.warehouse}.war</warFile>
+							<path>/${targetName.warehouse}</path>
 						</configuration>
 					</plugin>
 				</plugins>
