@@ -13,14 +13,14 @@ public class MainController {
 	@Autowired
 	private SystemInfo systemInfo;
 
-	@RequestMapping("/")
-	public String main() {
-		return "redirect:/system-info";
-	}
-
 	@ResponseBody
 	@RequestMapping("/system-info")
 	public String systemInfo() {
 		return systemInfo.getSystemName();
+	}
+
+	@RequestMapping("/login-page")
+	public String login() {
+		return "/login/login.xhtml";
 	}
 }
