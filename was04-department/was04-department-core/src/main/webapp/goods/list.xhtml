@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:body>
+        <ui:composition template="../layout/main-template.xhtml">
+            <ui:define name="content">
+                 <!-- Right side column. Contains the navbar and content of the page -->
+                <aside class="right-side">                
+                    <!-- Content Header (Page header) -->
+                    <section class="content-header">
+                        <ol class="breadcrumb">
+                            <li><a href="#"><i class="fa fa-dashboard"></i> Kokpit</a></li>
+                            <li><a href="#">Produkty</a></li>
+                            <li class="active">Wyświetl</li>
+                        </ol>
+                    </section>
+
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Produkty</h3>
+                                        <div class="box-tools">
+                                            <div class="input-group">
+                                                <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 300px;" placeholder="Szukaj"/>
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body table-responsive no-padding">
+                                        <table class="table table-hover">
+                                            <tr>
+                                                <th>Symbol <a href="#"><i class="caret"></i></a></th>
+                                                <th>Nazwa</th>
+                                                <th>j.m.</th>
+                                                <th>VAT</th>
+                                                <th>Kategoria</th>
+                                                <th>Cena netto</th>
+                                                <th>Cena brutto</th>
+                                                <th>Akcje</th>
+                                            </tr>
+                                            <tr>
+                                                <td>LTR8542</td>
+                                                <td>22'' LG Flatron E2260T-PN (LED)</td>
+                                                <td>szt.</td>
+                                                <td>23%</td>
+                                                <td>Monitory</td>
+                                                <td>100,00</td>
+                                                <td>100,23</td>
+                                                <td><a href="#" class="btn btn-primary btn-xs">Pokaż</a> <a href="#" class="btn btn-success btn-xs">Edytuj</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>LTR8542</td>
+                                                <td>22'' LG Flatron E2260T-PN (LED)</td>
+                                                <td>szt.</td>
+                                                <td>23%</td>
+                                                <td>Monitory</td>
+                                                <td>100,00</td>
+                                                <td>100,23</td>
+                                                <td><a href="#" class="btn btn-primary btn-xs">Pokaż</a> <a href="#" class="btn btn-success btn-xs">Edytuj</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>LTR8542</td>
+                                                <td>22'' LG Flatron E2260T-PN (LED)</td>
+                                                <td>szt.</td>
+                                                <td>23%</td>
+                                                <td>Monitory</td>
+                                                <td>100,00</td>
+                                                <td>100,23</td>
+                                                <td><a href="#" class="btn btn-primary btn-xs">Pokaż</a> <a href="#" class="btn btn-success btn-xs">Edytuj</a></td>
+                                            </tr>
+
+                                        </table>
+                                    </div><!-- /.box-body -->
+                                    <div class="box-footer clearfix">
+                                        <ul class="pagination pagination-sm no-margin pull-right">
+                                            <li><a href="#">«</a></li>
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">»</a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- /.box -->
+                            </div>
+                        </div>
+                    </section><!-- /.content -->                
+                </aside><!-- /.right-side -->
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

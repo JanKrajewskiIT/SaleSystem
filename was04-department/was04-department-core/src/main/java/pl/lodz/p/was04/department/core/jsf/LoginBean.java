@@ -23,7 +23,7 @@ public class LoginBean {
 		dispatcher.forward((ServletRequest) context.getRequest(), (ServletResponse) context.getResponse());
 		FacesContext.getCurrentInstance().responseComplete();
 
-		return "index2";
+		return "index";
 	}
 
 	public String doLogout() {

@@ -313,7 +313,7 @@
 						<configuration>
 							<username>tomcat</username>
 							<password>password</password>
-							<url>http://localhost:8080/manager/text</url>
+							<url>http://localhost:20001/manager/text</url>
 						</configuration>
 					</plugin>
 				</plugins>

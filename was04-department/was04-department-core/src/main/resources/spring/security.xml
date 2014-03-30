@@ -19,12 +19,15 @@
 	</authentication-manager>
 
 	<http pattern="/login/login.xhtml" security="none" />
+	<http pattern="/login/error.xhtml" security="none" />
 
-	<http auto-config="true">
-		<intercept-url pattern="/*.xhtml" access="ROLE_ADMIN" />
-		<form-login login-page="/login/login.xhtml" default-target-url="/" authentication-failure-url="/login/error.xhtml"
+	<http auto-config="true" use-expressions="true">
+		<form-login login-page="/login/login.xhtml" default-target-url="/index.xhtml" authentication-failure-url="/login/error.xhtml"
 			always-use-default-target="true" />
 		<logout logout-success-url="/login/logout.xhtml" />
 		<remember-me key="securityKey" token-validity-seconds="864000" user-service-ref="userDetailsService" />
+		
+		<!-- <intercept-url pattern="/*.xhtml" access="ROLE_ADMIN" /> -->
+		<intercept-url pattern="/**" access="isAuthenticated()"/>
 	</http>
 </beans:beans>
