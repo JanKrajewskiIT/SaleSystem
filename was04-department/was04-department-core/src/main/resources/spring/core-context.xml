@@ -11,18 +11,18 @@
 	<mvc:annotation-driven />
 	<context:component-scan base-package="pl.lodz.p.was04.department" />
 	
-	<context:property-placeholder location="classpath*:*/jdbc_${env.name}.properties" />
+	<context:property-placeholder location="classpath*:*/jdbc_${env.name}.properties" order="0" />
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="${driver}" />
-		<property name="url" value="${url}" />
-		<property name="username" value="${username}" />
-		<property name="password" value="${password}" />
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
 		<property name="initialSize" value="1" />
 		<property name="maxActive" value="3" />
 		<property name="maxWait" value="5000" />
 	</bean>
-
+	
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan" value="pl.lodz.p.was04.department.core.domain" />
@@ -45,5 +45,5 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-	<!-- <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" /> -->
+	<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 </beans>

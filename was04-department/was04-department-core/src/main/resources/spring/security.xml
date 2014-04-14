@@ -27,7 +27,6 @@
 		<logout logout-success-url="/login/logout.xhtml" />
 		<remember-me key="securityKey" token-validity-seconds="864000" user-service-ref="userDetailsService" />
 		
-		<!-- <intercept-url pattern="/*.xhtml" access="ROLE_ADMIN" /> -->
 		<intercept-url pattern="/**" access="isAuthenticated()"/>
 	</http>
 </beans:beans>
